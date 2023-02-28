@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'navbar' %}
+<nav class="navbar navbar-expand-sm navbar-dark bg-danger">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">The Book Store</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+            aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" aria-current="page">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Books</a>
+                </li>
+            </ul>
+            <div class="d-flex my-2 my-lg-0">
+                
+              <h5 class="text-center m-2 text-white"> <i class="bi bi-person-circle"></i> {{current_user}}</h5>
+                    
+                <a href="{% url 'signout' %}"><button class="btn btn-warning my-2 my-sm-0"
+                        type="button">Logout</button></a>
+            </div>
+        </div>
+    </div>
+</nav>
+{% endblock 'navbar' %}
+
+
+{% block 'content' %}
+<div class="container mt-5">
+    <div class="book-container">
+        {% for item in data %}
+        <div class="book-items">
+            <div class="card">
+                <img src="{{item.bookimage}}" class="card-img-top book-image">
+                <div class="card-body">
+                    <h5 class="card-title ">{{item.bookname}}</h5>
+                    <p class="btn btn-outline-danger">Price: {{item.bookprice}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+</div>
+
+
+{% endblock 'content' %}
